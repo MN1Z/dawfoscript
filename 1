@@ -1,0 +1,277 @@
+local Library = loadstring(game:HttpGet("https://you.whimper.xyz/sources/btteam/SystemUI.lua"))() -- LIBRARY
+
+local Window = Library:CreateWindow('DAWFO UNIVERSAL') -- CREATE WINDOW
+
+local Tab = { -- CREATE TABS
+    Tab_1 = Window:addTab('Home'),
+    Tab_Setting = Window:addTab('Main'),
+    Tab_Event = Window:addTab('Games'),
+    Tab_2 = Window:addTab('Player'),
+    Tab_SubFarm = Window:addTab('Soon.'),
+    Tab_3 = Window:addTab('Soon.'),
+    Tab_3_1 = Window:addTab('Soon.'),
+    Tab_Sea = Window:addTab('Soom.'),
+    
+    
+}
+
+local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
+local Changelog = Home_Left:addMenu("Updates")
+Changelog:addChangelog('[January, 28 2025]')
+Changelog:addChangelog('- Public Script / Released')
+Changelog:addChangelog('- Fuck niggas!')
+
+local Home_Right = Tab.Tab_1:addSection() -- HOME RIGHT SECTION
+local Main_Home = Home_Right:addMenu("#Home")
+
+getgenv().WalkSpeedValue = 26
+Main_Home:addTextbox("Speed", getgenv().WalkSpeedValue, function(speedfunc)
+    getgenv().WalkSpeedValue = speedfunc
+    if getgenv().WalkSpeedValue then
+        local Player = game:service'Players'.LocalPlayer
+        Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+            Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue
+        end)
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue
+    end
+end)
+
+getgenv().JumpValue = 50
+Main_Home:addTextbox("Jump", getgenv().JumpValue, function(jumpfunc)
+    getgenv().JumpValue = jumpfunc
+    if getgenv().JumpValue then
+        game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = getgenv().JumpValue
+    end
+end)
+
+Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
+    InfiniteJumpEnabled = Value
+    if InfiniteJumpEnabled then
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end)
+    end
+end)
+
+Main_Home:addToggle('No Clip', getgenv().NoClip, function(clipf)
+    getgenv().NoClip = clipf
+end)
+spawn(function()
+    pcall(function()
+        game:GetService("RunService").Stepped:Connect(function()
+            if getgenv().NoClip then
+                for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                    end
+                end
+            end
+        end)
+    end)
+end)
+
+getgenv().AntiAFK = true
+Main_Home:addToggle("Anti AFK", getgenv().AntiAFK, function(Value)
+    getgenv().AntiAFK = Value
+end)
+
+task.spawn(function ()
+    while wait(.1) do
+        if getgenv().AntiAFK then
+            local vu = game:GetService("VirtualUser")
+            game:GetService("Players").LocalPlayer.Idled:connect(function()
+                vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+                wait(1)
+                vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            end)
+        end
+    end
+end)
+
+getgenv().AntiKickClient = true
+Main_Home:addToggle("Anti Kick Client", getgenv().AntiKickClient, function(Value)
+    getgenv().AntiKickClient = Value
+end)
+task.spawn(function()
+    while wait() do
+        if getgenv().AntiKickClient then
+            loadstring(game:HttpGet('https://gitlab.com/Sky2836/BT/-/raw/main/antikickclient'))()
+        end
+    end
+end)
+
+Main_Home:addButton("FPS Boost", function()
+    local decalsyeeted = false
+    local g = game
+    local w = g.Workspace
+    local l = g.Lighting
+    local t = w.Terrain
+    t.WaterWaveSize = 0
+    t.WaterWaveSpeed = 0
+    t.WaterReflectance = 0
+    t.WaterTransparency = 0
+    l.GlobalShadows = false
+    l.FogEnd = 9e9
+    l.Brightness = 0
+    settings().Rendering.QualityLevel = "Level01"
+    for i, v in pairs(g:GetDescendants()) do
+        if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then 
+            v.Material = "Plastic"
+            v.Reflectance = 0
+        elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+            v.Transparency = 1
+        elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+            v.Enabled = false
+        elseif v:IsA("MeshPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+            v.TextureID = 10385902758728957
+        end
+    end
+    for i, e in pairs(l:GetChildren()) do
+        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+            e.Enabled = false
+        end
+    end
+end)
+
+Main_Home:addButton("Rejoin Server", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
+Main_Home:addButton("Server Hop", function()
+    Hop()
+end)
+function Hop()
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    function TPReturner()
+        local Site;
+        if foundAnything == "" then
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+        else
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+        end
+        local ID = ""
+        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+            foundAnything = Site.nextPageCursor
+        end
+        local num = 0;
+        for i,v in pairs(Site.data) do
+            local Possible = true
+            ID = tostring(v.id)
+            if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                for _,Existing in pairs(AllIDs) do
+                    if num ~= 0 then
+                        if ID == tostring(Existing) then
+                            Possible = false
+                        end
+                    else
+                        if tonumber(actualHour) ~= tonumber(Existing) then
+                            local delFile = pcall(function()
+                                -- delfile("NotSameServers.json")
+                                AllIDs = {}
+                                table.insert(AllIDs, actualHour)
+                            end)
+                        end
+                    end
+                    num = num + 1
+                end
+                if Possible == true then
+                    table.insert(AllIDs, ID)
+                    wait(.1)
+                    pcall(function()
+                        -- writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                        wait()
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                    end)
+                    wait(.1)
+                end
+            end
+        end
+    end
+    function Teleport() 
+        while wait(.1) do
+            pcall(function()
+                TPReturner()
+                if foundAnything ~= "" then
+                    TPReturner()
+                end
+            end)
+        end
+    end
+    Teleport()
+end
+
+Main_Home:addButton("Teleport To Lower Server", function()
+    local maxplayers, gamelink, goodserver, data_table = math.huge, "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
+    if not _G.FailedServerID then _G.FailedServerID = {} end
+
+    local function serversearch()
+        data_table = game:GetService"HttpService":JSONDecode(game:HttpGetAsync(gamelink))
+        for _, v in pairs(data_table.data) do
+            pcall(function()
+                if type(v) == "table" and v.id and v.playing and tonumber(maxplayers) > tonumber(v.playing) and not table.find(_G.FailedServerID, v.id) then
+                    maxplayers = v.playing
+                    goodserver = v.id
+                end
+            end)
+        end
+    end
+
+    function getservers()
+        pcall(serversearch)
+        for i, v in pairs(data_table) do
+            if i == "nextPageCursor" then
+                if gamelink:find"&cursor=" then
+                    local a = gamelink:find"&cursor="
+                    local b = gamelink:sub(a)
+                    gamelink = gamelink:gsub(b, "")
+                end
+                gamelink = gamelink .. "&cursor=" .. v
+                pcall(getservers)
+            end
+        end
+    end
+
+    pcall(getservers)
+    wait(.1)
+    if goodserver == game.JobId or maxplayers == #game:GetService"Players":GetChildren() - 1 then
+    end
+    table.insert(_G.FailedServerID, goodserver)
+    game:GetService"TeleportService":TeleportToPlaceInstance(game.PlaceId, goodserver)
+
+    while wait(.1) do
+        pcall(function()
+            if not game:IsLoaded() then
+                game.Loaded:Wait()
+            end
+            game.CoreGui.RobloxPromptGui.promptOverlay.DescendantAdded:Connect(function()
+                local GUI = game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt")
+                if GUI then
+                    if GUI.TitleFrame.ErrorTitle.Text == "Disconnected" then
+                        if #game.Players:GetPlayers() <= 1 then
+                            game.Players.LocalPlayer:Kick("\nRejoining...")
+                            wait(.1)
+                            game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+                        else
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+                        end
+                    end
+                end
+            end)
+        end)
+    end
+end)
+
+Main_Home:addButton("Destroy GUI", function()
+    Library:DestroyGui()
+end)
