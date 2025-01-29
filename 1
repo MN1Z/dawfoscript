@@ -12,6 +12,9 @@ local Tab = { -- CREATE TABS
 
 local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
 local Changelog = Home_Left:addMenu("Updates")
+Changelog:addChangelog('[January, 29 2025]')
+Changelog:addChangelog('- Idk lol')
+
 Changelog:addChangelog('[January, 28 2025]')
 Changelog:addChangelog('- Public Script / Released')
 Changelog:addChangelog('- Fuck niggas!')
@@ -37,6 +40,10 @@ Main_Home:addTextbox("Jump", getgenv().JumpValue, function(jumpfunc)
     if getgenv().JumpValue then
         game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = getgenv().JumpValue
     end
+end)
+
+Main_Home:addButton("Shiftlock", function()
+loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
 end)
 
 Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
@@ -271,6 +278,3 @@ Main_Home:addButton("Destroy GUI", function()
     Library:DestroyGui()
 end)
 
-Main_Player:addButton("Shiftlock", function()
-loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
-end)
