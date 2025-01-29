@@ -7,12 +7,7 @@ local Tab = { -- CREATE TABS
     Tab_Setting = Window:addTab('Main'),
     Tab_Event = Window:addTab('Games'),
     Tab_2 = Window:addTab('Player'),
-    Tab_SubFarm = Window:addTab('Soon.'),
-    Tab_3 = Window:addTab('Soon.'),
-    Tab_3_1 = Window:addTab('Soon.'),
-    Tab_Sea = Window:addTab('Soom.'),
-    
-    
+       
 }
 
 local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
@@ -274,4 +269,8 @@ end)
 
 Main_Home:addButton("Destroy GUI", function()
     Library:DestroyGui()
+end)
+
+Main_Main:addButton("Rejoin Server", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
