@@ -42,6 +42,11 @@ Main_Home:addTextbox("Jump", getgenv().JumpValue, function(jumpfunc)
     end
 end)
 
+Main_Home:addTextbox("Fov", getgenv().FieldOfView, function(speedfunc)
+        game.Workspace.CurrentCamera.FieldOfView = Value
+    end
+end)
+
 Main_Home:addButton("Shiftlock", function()
 loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
 end)
