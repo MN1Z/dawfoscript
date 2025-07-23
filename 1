@@ -322,12 +322,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/mast
 end)
 
 local Fe_Left = Tab.Tab_2:addSection() -- GAMES LEFT SECTION
-local Changelog = Fe_Left:addMenu("R6 / R15 - Some Might Work")
-Changelog:addChangelog('[Some Working In Progress]')
-Changelog:addChangelog('- + Some New Games')
+local Changelog = Fe_Left:addMenu("Added New Player Scripts")
+Changelog:addChangelog('[July, 23 2025]')
+Changelog:addChangelog('- Mods')
 
 local Fe_Right = Tab.Tab_2:addSection() -- GAMES RIGHT SECTION
-local Main_Fe = Games_Right:addMenu("Player Scripts / FE")
+local Main_Fe = Fe_Right:addMenu("Player Scripts")
 
 Main_Fe:addButton("Tp Tool", function()
 mouse = game.Players.LocalPlayer:GetMouse()
