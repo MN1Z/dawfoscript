@@ -320,3 +320,37 @@ end)
 Main_Games:addButton("Prison Life", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
 end)
+
+local Player Scripts_Left = Tab.Tab_2:addSection() -- GAMES LEFT SECTION
+local Changelog = Player Scripts_Left:addMenu("R6 / R15 - Some Might Work")
+Changelog:addChangelog('[Some Working In Progress]')
+Changelog:addChangelog('- + Some New Games')
+
+Main_Player Scripts:addButton("Tp Tool", function()
+mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+Main_Player Scripts:addButton("Dodge Tool", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-FE-Sans-Dodge-40667"))()
+end)
+
+Main_Player Scripts:addButton("FE Sephoric Blade", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Seraphic-Blade-Fling-No-key-40347"))()
+end)
+
+Main_Player Scripts:addButton("Mobile Keyboard", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end)
+
+Main_Player Scripts:addButton("Aimbot", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ySixxNz/SIXHUB-UNIVERSAL/SixHub-Universal/SixHub-Universal"))()
+end)
