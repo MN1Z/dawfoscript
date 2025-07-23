@@ -329,19 +329,6 @@ Changelog:addChangelog('- Mods')
 local Fe_Right = Tab.Tab_2:addSection() -- GAMES RIGHT SECTION
 local Main_Fe = Fe_Right:addMenu("Player Scripts")
 
-Main_Fe:addButton("Tp Tool", function()
-mouse = game.Players.LocalPlayer:GetMouse()
-tool = Instance.new("Tool")
-tool.RequiresHandle = false
-tool.Name = "Click Teleport"
-tool.Activated:connect(function()
-local pos = mouse.Hit+Vector3.new(0,2.5,0)
-pos = CFrame.new(pos.X,pos.Y,pos.Z)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-end)
-tool.Parent = game.Players.LocalPlayer.Backpack
-end)
-
 Main_Fe:addButton("Dodge Tool", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-FE-Sans-Dodge-40667"))()
 end)
