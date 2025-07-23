@@ -302,6 +302,16 @@ Main_Games:addButton("99 Nights In A Forest", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", true))()
 end)
 
+Main_Games:addButton("Ninja Legends", function()
+loadstring([[
+getgenv().Configs = {
+["Training Area"] = false -- Max Light Karma Training Area
+}
+]])()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tempaccount42069/lazykaitun/refs/heads/main/kaitun.lua",true))()
+end)
+
 Main_Games:addButton("Big Paintball 2", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/BIG-Paintball-2!-Best-Autofarm-Evelynn-Hub-43943"))()
 end)
