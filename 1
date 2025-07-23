@@ -290,6 +290,10 @@ Changelog:addChangelog('- + Some New Games')
 local Games_Right = Tab.Tab_Event:addSection() -- GAMES RIGHT SECTION
 local Main_Games = Games_Right:addMenu("Games")
 
+Main_Games:addButton("Velocity Scripts", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Velocity-Script-Searcher-17665"))()
+end)
+
 Main_Games:addButton("Aimbot FFA", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Aimbot-FFA-ZXNS-AIMBOT-FFA-SCRIPT-OP-41311"))()
 end)
