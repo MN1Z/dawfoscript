@@ -5,13 +5,10 @@ local Window = Library:CreateWindow('DAWFO UNIVERSAL') -- CREATE WINDOW
 local Tab = { -- CREATE TABS
     Tab_1 = Window:addTab('Home'),
     Tab_Event = Window:addTab('Games'),
-    Tab_2 = Window:addTab('FE Scripts'),
+    Tab_2 = Window:addTab('Player Scripts'),
     Tab_SubFarm = Window:addTab('Soon.'),
     Tab_3 = Window:addTab('Soon.'),
-    Tab_3_1 = Window:addTab('Soon.'),
-    Tab_Sea = Window:addTab('Soon.'),
-    
-    
+     
 }
 
 local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
@@ -43,6 +40,10 @@ Main_Home:addTextbox("Jump", getgenv().JumpValue, function(jumpfunc)
     if getgenv().JumpValue then
         game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = getgenv().JumpValue
     end
+end)
+
+Main_Home:addButton("Perm Shiftlock", function()
+loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
 end)
 
 Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
@@ -287,4 +288,8 @@ local Main_Games = Games_Right:addMenu("Games")
 
 Main_Games:addButton("Aimbot FFA", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Aimbot-FFA-ZXNS-AIMBOT-FFA-SCRIPT-OP-41311"))()
+end)
+
+Main_Games:addButton("Prison Life", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
 end)
