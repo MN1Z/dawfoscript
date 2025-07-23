@@ -4,7 +4,6 @@ local Window = Library:CreateWindow('DAWFO UNIVERSAL') -- CREATE WINDOW
 
 local Tab = { -- CREATE TABS
     Tab_1 = Window:addTab('Home'),
-    Tab_Setting = Window:addTab('Main'),
     Tab_Event = Window:addTab('Games'),
     Tab_2 = Window:addTab('FE Scripts'),
     Tab_SubFarm = Window:addTab('Soon.'),
@@ -284,7 +283,7 @@ Changelog:addChangelog('[July, 23 2025]')
 Changelog:addChangelog('- + Some New Games')
 
 local Games_Right = Tab.Tab_Event:addSection() -- GAMES RIGHT SECTION
-local Main_Games = Home_Right:addMenu("Games")
+local Main_Games = Games_Right:addMenu("Games")
 
 Main_Games:addButton("Aimbot FFA", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Aimbot-FFA-ZXNS-AIMBOT-FFA-SCRIPT-OP-41311"))()
