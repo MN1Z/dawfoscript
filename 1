@@ -3,24 +3,28 @@ local Library = loadstring(game:HttpGet("https://you.whimper.xyz/sources/btteam/
 local Window = Library:CreateWindow('DAWFO UNIVERSAL') -- CREATE WINDOW
 
 local Tab = { -- CREATE TABS
-    Tab_1 = Window:addTab('#Home'),
-    Tab_Setting = Window:addTab('#Player'),
+    Tab_1 = Window:addTab('Home'),
+    Tab_Setting = Window:addTab('Main'),
     Tab_Event = Window:addTab('Games'),
-    Tab_2 = Window:addTab('Idk'),
-       
+    Tab_2 = Window:addTab('FE Scripts'),
+    Tab_SubFarm = Window:addTab('Soon.'),
+    Tab_3 = Window:addTab('Soon.'),
+    Tab_3_1 = Window:addTab('Soon.'),
+    Tab_Sea = Window:addTab('Soon.'),
+    
+    
 }
 
 local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
 local Changelog = Home_Left:addMenu("Updates")
-Changelog:addChangelog('[January, 29 2025]')
-Changelog:addChangelog('')
-
-Changelog:addChangelog('[January, 28 2025]')
-Changelog:addChangelog('- Public Script / Released')
+Changelog:addChangelog('[July, 23 2025]')
+Changelog:addChangelog('- Added New Features')
+Changelog:addChangelog('- New FE Tab')
+Changelog:addChangelog('- New Games Tab')
 Changelog:addChangelog('- Fuck niggas!')
 
 local Home_Right = Tab.Tab_1:addSection() -- HOME RIGHT SECTION
-local Main_Home = Home_Right:addMenu("#Home")
+local Main_Home = Home_Right:addMenu("Home")
 
 getgenv().WalkSpeedValue = 26
 Main_Home:addTextbox("Speed", getgenv().WalkSpeedValue, function(speedfunc)
@@ -40,10 +44,6 @@ Main_Home:addTextbox("Jump", getgenv().JumpValue, function(jumpfunc)
     if getgenv().JumpValue then
         game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = getgenv().JumpValue
     end
-end)
-
-Main_Home:addButton("Shiftlock", function()
-loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
 end)
 
 Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
@@ -278,3 +278,14 @@ Main_Home:addButton("Destroy GUI", function()
     Library:DestroyGui()
 end)
 
+local Games_Left = Tab.Tab_Event:addSection() -- GAMES LEFT SECTION
+local Changelog = Games_Left:addMenu("Updates")
+Changelog:addChangelog('[July, 23 2025]')
+Changelog:addChangelog('- + Some New Games')
+
+local Games_Right = Tab.Tab_Event:addSection() -- GAMES RIGHT SECTION
+local Main_Games = Home_Right:addMenu("Games")
+
+Main_Games:addButton("Aimbot FFA", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Aimbot-FFA-ZXNS-AIMBOT-FFA-SCRIPT-OP-41311"))()
+end)
