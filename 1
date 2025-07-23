@@ -22,10 +22,6 @@ Changelog:addChangelog('- Fuck niggas!')
 local Home_Right = Tab.Tab_1:addSection() -- HOME RIGHT SECTION
 local Main_Home = Home_Right:addMenu("Home")
 
-Main_Home:addButton("Infinite Yield", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-end)
-
 getgenv().WalkSpeedValue = 26
 Main_Home:addTextbox("Speed", getgenv().WalkSpeedValue, function(speedfunc)
     getgenv().WalkSpeedValue = speedfunc
@@ -44,6 +40,10 @@ Main_Home:addTextbox("Jump", getgenv().JumpValue, function(jumpfunc)
     if getgenv().JumpValue then
         game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = getgenv().JumpValue
     end
+end)
+
+Main_Home:addButton("Infinite Yield", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
 
 Main_Home:addButton("Perm Shiftlock", function()
@@ -304,6 +304,9 @@ end)
 
 Main_Games:addButton("Ninja Legends", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/tempaccount42069/lazykaitun/refs/heads/main/kaitun.lua",true))()
+end)
+Main_Games:addButton("My Singing Brainrot", function()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7a5858f5d7256e606ed3ba5c55a8ce24.lua"))()
 end)
 
 Main_Games:addButton("Millionaire Empire Tycoon", function()
