@@ -50,6 +50,23 @@ Main_Home:addButton("Perm Shiftlock", function()
 loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
 end)
 
+Main_Home:addButton("No Cooldown Prompt", function()
+local function SetupProximityPrompt(prompt)
+    prompt.HoldDuration = 0
+end
+
+workspace.DescendantAdded:Connect(function(descendant)
+    if descendant:IsA("ProximityPrompt") then
+        SetupProximityPrompt(descendant)
+    end
+end)
+
+for _, prompt in ipairs(workspace:GetDescendants()) do
+    if prompt:IsA("ProximityPrompt") then
+        SetupProximityPrompt(prompt)
+    end
+end)
+
 Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
     InfiniteJumpEnabled = Value
     if InfiniteJumpEnabled then
@@ -380,6 +397,10 @@ end)
 
 Main_Player:addButton("Dodge Tool", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-FE-Sans-Dodge-40667"))()
+end)
+
+Main_Player:addButton("Hat Hub ( With Hand Script R6 )", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/inkdupe/hat-scripts/refs/heads/main/updatedhathub.lua"))()
 end)
 
 Main_Player:addButton("Portal Gun", function()
