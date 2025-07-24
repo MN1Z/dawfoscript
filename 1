@@ -285,7 +285,8 @@ end)
 local Games_Left = Tab.Tab_Event:addSection() -- GAMES LEFT SECTION
 local Changelog = Games_Left:addMenu("Updates")
 Changelog:addChangelog('[July, 23 2025]')
-Changelog:addChangelog('- + Some New Games')
+Changelog:addChangelog('- + 7 New Op Scripts')
+Changelog:addChangelog(' More Coming Soon')
 
 local Games_Right = Tab.Tab_Event:addSection() -- GAMES RIGHT SECTION
 local Main_Games = Games_Right:addMenu("Games")
@@ -347,6 +348,10 @@ end)
 
 Main_Player:addButton("Dodge Tool", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-FE-Sans-Dodge-40667"))()
+end)
+
+Main_Player:addButton("Portal Gun", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/randomguy194/dollar-tree-portal-gun/main/portal%20gun%20ported'))()
 end)
 
 Main_Player:addButton("Animations", function()
