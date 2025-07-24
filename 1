@@ -50,22 +50,6 @@ Main_Home:addButton("Perm Shiftlock", function()
 loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
 end)
 
-Main_Home:addButton("No Cooldown Prompt", function()
-local function SetupProximityPrompt(prompt)
-    prompt.HoldDuration = 0
-end
-
-workspace.DescendantAdded:Connect(function(descendant)
-    if descendant:IsA("ProximityPrompt") then
-        SetupProximityPrompt(descendant)
-    end
-end)
-
-for _, prompt in ipairs(workspace:GetDescendants()) do
-    if prompt:IsA("ProximityPrompt") then
-        SetupProximityPrompt(prompt)
-    end)
-
 Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
     InfiniteJumpEnabled = Value
     if InfiniteJumpEnabled then
