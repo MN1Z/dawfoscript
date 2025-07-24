@@ -64,8 +64,7 @@ end)
 for _, prompt in ipairs(workspace:GetDescendants()) do
     if prompt:IsA("ProximityPrompt") then
         SetupProximityPrompt(prompt)
-    end
-end)
+    end)
 
 Main_Home:addToggle("Infinite Jump", InfiniteJumpEnabled, function(Value)
     InfiniteJumpEnabled = Value
