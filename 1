@@ -6,7 +6,7 @@ local Tab = { -- CREATE TABS
     Tab_1 = Window:addTab('Home'),
     Tab_Event = Window:addTab('Games'),
     Tab_2 = Window:addTab('Player'),
-    Tab_SubFarm = Window:addTab('Soon.'),
+    Tab_SubFarm = Window:addTab('Graphics'),
     Tab_3 = Window:addTab('Soon.'),
      
 }
@@ -409,4 +409,24 @@ end)
 
 Main_Player:addButton("R6 Troll Animations", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Fsploit/FeAnimationHub/refs/heads/main/Hub.lua"))()
+end)
+
+local Graphics_Left = Tab.Tab_Subfarm:addSection() -- GRAPHIC LEFT SECTION
+local Changelog = Graphics_Left:addMenu("New Updates!")
+Changelog:addChangelog('+ Graphic Mods')
+Changelog:addChangelog('+ Motion Blur')
+
+local Graphics_Right = Tab.Tab_Subfarm:addSection() -- GRAPHIC RIGHT SECTION
+local Main_Graphics = Graphics_Right:addMenu("Graphics")
+
+Main_Graphics:addButton("Motion Blur", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-motion-blur-45090"))()
+end)
+
+Main_Graphics:addButton("Pshade Ultimate", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Pshade-ultimate-38276"))()
+end)
+
+Main_Graphics:addButton("Graphics Preset 1", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Graphic-Enchance-41296"))()
 end)
