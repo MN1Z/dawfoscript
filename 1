@@ -22,6 +22,10 @@ Changelog:addChangelog('- Fuck niggas!')
 local Home_Right = Tab.Tab_1:addSection() -- HOME RIGHT SECTION
 local Main_Home = Home_Right:addMenu("Home")
 
+Main_Home:addButton("Dawfo Headshotta", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MN1Z/dawfohitter/refs/heads/main/headshot"))()
+end)
+
 getgenv().WalkSpeedValue = 26
 Main_Home:addTextbox("Speed", getgenv().WalkSpeedValue, function(speedfunc)
     getgenv().WalkSpeedValue = speedfunc
