@@ -334,8 +334,9 @@ end)
 
 local Player_Left = Tab.Tab_2:addSection() -- PLAYER LEFT SECTION
 local Changelog = Player_Left:addMenu("New Updates!")
-Changelog:addChangelog('[July, 23 2025]')
-Changelog:addChangelog('- + Mods,FE,Universals')
+Changelog:addChangelog('[December, 9 2025]')
+Changelog:addChangelog('- + Invincible Flight')
+
 
 local Player_Right = Tab.Tab_2:addSection() -- PLAYER RIGHT SECTION
 local Main_Player = Player_Right:addMenu("Player")
@@ -344,8 +345,16 @@ Main_Player:addButton("Mobile Keyboard", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 end)
 
+Main_Player:addButton("Universal Aimbot", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-ULTIMATE-MOBILE-AIMBOT-BETA-V2-69907"))()
+end)
+
 Main_Player:addButton("Sin Dragon FE ( Perm Kills )", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sin%20Dragon"))()
+end)
+
+Main_Player:addButton("Invincible Flight", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
 end)
 
 Main_Player:addButton("Resolution ", function()
