@@ -385,8 +385,6 @@ Main_Player:addButton("Ban Hammer ", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Ban%20Hammer"))()
 end)
 
-Main_Player:addButton("Sonic R15 ONLY ", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Azizanzz0/FE-R15-Sonic-X-Super/refs/heads/main/Protected%20SonicXSuper.txt"))()
 Main_Player:addButton("Lua Hammer ( With Moveset )", function()
 end)
 
@@ -417,6 +415,14 @@ Main_Player:addButton("Portal Gun", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/randomguy194/dollar-tree-portal-gun/main/portal%20gun%20ported'))()
 end)
 
+Main_Player:addButton("P shade", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Pshade-ultimate-38276"))()
+end)
+
+Main_Player:addButton("Motion Blur", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-motion-blur-45090"))()
+end)
+
 Main_Player:addButton("Old Roblox", function()
 loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Old-roblox-script-42121"))()
 end)
@@ -431,20 +437,31 @@ end)
 
 local Graphics_Left = Tab.Tab_SubFarm:addSection() -- GRAPHIC LEFT SECTION
 local Changelog = Graphics_Left:addMenu("New Updates!")
-Changelog:addChangelog('+ Graphic Mods')
-Changelog:addChangelog('+ Motion Blur')
+Changelog:addChangelog('+ R15 Animations')
+Changelog:addChangelog('+ Idk what else')
 
 local Graphics_Right = Tab.Tab_SubFarm:addSection() -- GRAPHIC RIGHT SECTION
-local Main_Graphics = Graphics_Right:addMenu("Graphics")
+local Main_Graphics = Graphics_Right:addMenu("R15 Animations")
 
-Main_Graphics:addButton("Motion Blur", function()
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-motion-blur-45090"))()
+Main_Graphics:addButton("Fe Animation V2", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-animation-v2-50632"))()
 end)
 
-Main_Graphics:addButton("Pshade Ultimate", function()
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Pshade-ultimate-38276"))()
+Main_Graphics:addButton("Wendigo R15", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Wendigo-Animation-75269"))()
 end)
 
-Main_Graphics:addButton("Graphics Preset 1", function()
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Graphic-Enchance-41296"))()
+Main_Graphics:addButton("Crouch R15", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-R15-Crouch-Script-64510"))()
+end)
+
+Main_Graphics:addButton("Fe Animation V01", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-Movement-Animation-V01-62433"))()
+end)
+
+Main_Graphics:addButton("Gaze Emotes", function()loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gaze-emote-74592"))()
+end)
+
+Main_Graphics:addButton("Sonic R15 & Shadow R15", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Azizanzz0/FE-R15-Sonic-X-Super/refs/heads/main/Protected%20SonicXSuper.txt"))()
 end)
