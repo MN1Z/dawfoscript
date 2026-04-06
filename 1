@@ -13,10 +13,10 @@ local Tab = { -- CREATE TABS
 
 local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
 local Changelog = Home_Left:addMenu("Updates")
-Changelog:addChangelog('[December, 9 2025]')
+Changelog:addChangelog('[April, 6 2026]')
 Changelog:addChangelog('- @riyxd.v on snapchat')
-Changelog:addChangelog('- Kill yourself')
-Changelog:addChangelog('- Fuck u')
+Changelog:addChangelog('- + God mode for kill parts.')
+Changelog:addChangelog('- + No cooldown prompt')
 Changelog:addChangelog('- Fuck niggas!')
 
 local Home_Right = Tab.Tab_1:addSection() -- HOME RIGHT SECTION
@@ -75,6 +75,9 @@ spawn(function()
             end
         end)
     end)
+end)
+Main_Home:addButton("No Cooldown Prompt", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-interact-no-cooldown-184359"))()
 end)
 
 getgenv().AntiAFK = true
@@ -357,8 +360,8 @@ Main_Player:addButton("Sin Dragon FE ( Perm Kills )", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sin%20Dragon"))()
 end)
 
-Main_Player:addButton("Invincible Flight", function()
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
+Main_Player:addButton("Universal God Mode", function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-god-mode-script-35373"))()
 end)
 
 Main_Player:addButton("Resolution ", function()
