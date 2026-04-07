@@ -13,10 +13,10 @@ local Tab = { -- CREATE TABS
 
 local Home_Left = Tab.Tab_1:addSection() -- HOME LEFT SECTION
 local Changelog = Home_Left:addMenu("Updates")
-Changelog:addChangelog('[April, 6 2026]')
+Changelog:addChangelog('[April, 7 2026]')
 Changelog:addChangelog('- @riyxd.v on snapchat')
-Changelog:addChangelog('- + God mode for kill parts.')
-Changelog:addChangelog('- + No cooldown prompt')
+Changelog:addChangelog('- + Sword Reach.')
+Changelog:addChangelog('- + Imran Shut Up')
 Changelog:addChangelog('- Fuck niggas!')
 
 local Home_Right = Tab.Tab_1:addSection() -- HOME RIGHT SECTION
@@ -78,6 +78,245 @@ spawn(function()
 end)
 Main_Home:addButton("No Cooldown Prompt", function()
     loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-interact-no-cooldown-184359"))()
+end)
+
+Main_Home:addButton("Sword Reach", function()
+    --// SERVICES
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+--// SETTINGS
+local MAX_REACH = 15
+local MIN_REACH = 9.1
+local DETECTION_RANGE = 9.01
+local CLOSE_HIT = 9
+local PREDICTION = 0.18
+local FIRETOUCH_DELAY = 0
+local UPDATE_RATE = 1 / 60 -- 60 updates per second
+
+local JUMP_STATES = {
+	[Enum.HumanoidStateType.Jumping] = true,
+	[Enum.HumanoidStateType.Freefall] = true
+}
+
+--// VARIABLES
+local equipped = false
+local tool, bubble = nil, nil
+local hue = 0
+local heartbeatConnection
+local warningText
+
+--// GUI: Display the warning message and reach adjustment
+local function createWarningText()
+	local screenGui = Instance.new("ScreenGui")
+	screenGui.Name = "PingWarningGUI"
+	screenGui.Parent = LocalPlayer.PlayerGui
+	
+	warningText = Instance.new("TextLabel")
+	warningText.Size = UDim2.new(0, 300, 0, 50)
+	warningText.Position = UDim2.new(0.5, -150, 0.9, -25)
+	warningText.Text = ""
+	warningText.TextColor3 = Color3.fromRGB(255, 0, 0)
+	warningText.BackgroundTransparency = 1
+	warningText.TextSize = 20
+	warningText.Parent = screenGui
+end
+
+--// Create visual bubble
+local function createBubble()
+	local part = Instance.new("Part")
+	part.Name = "SafeReachBubble"
+	part.Anchored = true
+	part.CanCollide = false
+	part.CastShadow = false
+	part.Shape = Enum.PartType.Ball
+	part.Material = Enum.Material.ForceField
+	part.Transparency = 0.2
+	part.Color = Color3.fromHSV(0, 1, 1)
+	part.Size = Vector3.new(MAX_REACH * 2, MAX_REACH * 2, MAX_REACH * 2)
+	part.Parent = LocalPlayer.Character
+	return part
+end
+
+-- Raycast check to see if player is visible
+local function isClear(origin, targetPos, targetChar)
+	local dir = targetPos - origin
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Whitelist
+	params.FilterDescendantsInstances = { targetChar }
+	params.IgnoreWater = true
+
+	local result = workspace:Raycast(origin, dir, params)
+	return result and result.Instance and result.Instance:IsDescendantOf(targetChar)
+end
+
+-- Simulate touch
+local function touchCharacter(char, fromPos)
+	local hrp = char:FindFirstChild("HumanoidRootPart")
+	local handle = tool and tool:FindFirstChild("Handle")
+	if not handle or not hrp then return end
+
+	local distance = (fromPos - hrp.Position).Magnitude
+	if distance > MAX_REACH then return end
+
+	for _, part in ipairs(char:GetChildren()) do
+		if part:IsA("BasePart") then
+			task.delay(FIRETOUCH_DELAY, function()
+				firetouchinterest(handle, part, 0)
+				firetouchinterest(handle, part, 1)
+			end)
+		end
+	end
+end
+
+-- Check ping and adjust reach if necessary
+local function checkPingAndAdjustReach(target)
+	local ping = target.GetNetworkPing and target:GetNetworkPing()
+	if ping and ping > 230 then
+		MAX_REACH = 7.1
+		CLOSE_HIT = 8.4
+		DETECTION_RANGE = 7.5
+		warningText.Text = "Warning: Ping is over 230ms! Reach reduced."
+	else
+		MAX_REACH = 20
+		CLOSE_HIT = 9
+		DETECTION_RANGE = 8
+		warningText.Text = ""
+	end
+end
+
+-- Determine reach based on movement
+local function getAdjustedReach(player, hrp, humanoid)
+	if JUMP_STATES[humanoid:GetState()] then
+		return MIN_REACH
+	end
+
+	local moveDir = humanoid.MoveDirection
+	local toPlayer = (LocalPlayer.Character.HumanoidRootPart.Position - hrp.Position).Unit
+
+	if moveDir.Magnitude > 0.1 and moveDir:Dot(-toPlayer) > 0.5 then
+		return MIN_REACH
+	end
+
+	return MAX_REACH
+end
+
+-- Stop the update loop
+local function stopLoop()
+	if heartbeatConnection then
+		heartbeatConnection:Disconnect()
+		heartbeatConnection = nil
+	end
+end
+
+-- Main logic when tool is equipped
+local function onEquipped()
+	equipped = true
+	tool = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Tool")
+	if not tool then return end
+
+	if not bubble then
+		bubble = createBubble()
+	end
+
+	stopLoop()
+
+	local lastUpdate = 0
+	heartbeatConnection = RunService.Heartbeat:Connect(function()
+		local currentTime = tick()
+		if currentTime - lastUpdate < UPDATE_RATE then return end
+		lastUpdate = currentTime
+
+		local char = LocalPlayer.Character
+		local hrp = char and char:FindFirstChild("HumanoidRootPart")
+		if not equipped or not tool or not hrp then return end
+
+		-- Animate visual bubble
+		hue = (hue + 0.01) % 1
+		if bubble then
+			bubble.Position = hrp.Position
+			bubble.Color = Color3.fromHSV(hue, 1, 1)
+		end
+
+		for _, target in ipairs(Players:GetPlayers()) do
+			if target ~= LocalPlayer and target.Character then
+				local tChar = target.Character
+				local tHRP = tChar:FindFirstChild("HumanoidRootPart")
+				local humanoid = tChar:FindFirstChildOfClass("Humanoid")
+
+				if tHRP and humanoid and humanoid.Health > 0 then
+					checkPingAndAdjustReach(target)
+
+					local rawDistance = (hrp.Position - tHRP.Position).Magnitude
+					if rawDistance > DETECTION_RANGE then continue end
+
+					local reach = getAdjustedReach(target, tHRP, humanoid)
+					if bubble then
+						bubble.Size = Vector3.new(reach * 2, reach * 2, reach * 2)
+					end
+
+					if rawDistance <= reach then
+						if rawDistance <= CLOSE_HIT then
+							touchCharacter(tChar, hrp.Position)
+						else
+							local predicted = tHRP.Position + tHRP.Velocity * PREDICTION
+							if isClear(hrp.Position, predicted, tChar) or isClear(hrp.Position, tHRP.Position, tChar) then
+								touchCharacter(tChar, hrp.Position)
+							end
+						end
+					end
+				end
+			end
+		end
+	end)
+end
+
+-- Logic when tool is unequipped
+local function onUnequipped()
+	equipped = false
+	stopLoop()
+	if bubble then
+		bubble:Destroy()
+		bubble = nil
+	end
+end
+
+-- Setup tool listeners
+local function setupCharacter(char)
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	local backpack = LocalPlayer:FindFirstChild("Backpack")
+	if humanoid and backpack then
+		local toolInBackpack = backpack:FindFirstChildOfClass("Tool")
+		if toolInBackpack then
+			humanoid:EquipTool(toolInBackpack)
+		end
+	end
+
+	char.ChildAdded:Connect(function(child)
+		if child:IsA("Tool") then
+			child.Equipped:Connect(onEquipped)
+			child.Unequipped:Connect(onUnequipped)
+		end
+	end)
+
+	for _, child in ipairs(char:GetChildren()) do
+		if child:IsA("Tool") then
+			child.Equipped:Connect(onEquipped)
+			child.Unequipped:Connect(onUnequipped)
+		end
+	end
+end
+
+-- INIT
+if LocalPlayer.Character then
+	setupCharacter(LocalPlayer.Character)
+	createWarningText()  -- Create the warning text GUI on init
+end
+
+LocalPlayer.CharacterAdded:Connect(function()
+	setupCharacter(LocalPlayer.Character)
+end)
 end)
 
 getgenv().AntiAFK = true
