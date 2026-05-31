@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dawfo Bedrock Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Dawfo Bedrock Hub</h1>
+      <p>A safe companion page for your YouTube mod showcase.</p>
+      <a
+        class="button"
+        href="https://www.minecraft.net/en-us/login"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Sign in with Microsoft on Minecraft.net
+      </a>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Important safety note</h2>
+        <p>
+          This page does <strong>not</strong> collect credentials and does not embed fake login forms.
+          Always sign in only on official Microsoft or Minecraft domains.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Join a friend on Bedrock</h2>
+        <ol>
+          <li>Open Minecraft Bedrock/Pocket Edition.</li>
+          <li>Go to <strong>Play</strong> → <strong>Friends</strong>.</li>
+          <li>Ensure both players have each other added as Xbox friends.</li>
+          <li>Join the world when your friend is online with multiplayer enabled.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Join a Realm</h2>
+        <ol>
+          <li>In Minecraft, go to <strong>Play</strong>.</li>
+          <li>Use <strong>Join Realm</strong> and enter a valid invite code.</li>
+          <li>Accept invite permissions from the Realm owner.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Creator tools (legit)</h2>
+        <ul>
+          <li>Resource packs and behavior packs for custom content.</li>
+          <li>Command blocks and official cheats in your own worlds only.</li>
+          <li>No griefing, account abuse, or bypass tools.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Only allow your account</h2>
+        <p>
+          Set your channel admin panel with a private passphrase and your own Microsoft account ID.
+          This demo page includes a local-only owner lock for your browser profile.
+        </p>
+        <form id="owner-form">
+          <label for="ownerTag">Owner tag</label>
+          <input id="ownerTag" type="text" placeholder="your-channel-name" required />
+          <button type="submit">Save owner lock</button>
+        </form>
+        <p id="owner-status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer>
+      Built for content creation. Respect Mojang/Microsoft Terms and community rules.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
